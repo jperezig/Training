@@ -1,21 +1,12 @@
 package org.ninit.training.sorting;
 
-import org.ninit.training.utils.Utils;
+public class QuickSort implements Sorteable {
 
-public class QuickSort {
-
-	private static int rec = 0;
-
-	public static void sort(int[] numbers) {
-
-		partition(0, numbers.length - 1, numbers);
-		System.out.println(numbers);
-
+	public void sort(int[] input) {
+		partition(0, input.length - 1, input);
 	}
 
-	public static void partition(int left, int right, int[] numbers) {
-		System.out.println(rec++);
-		System.out.println(right - left);
+	public void partition(int left, int right, int[] numbers) {
 		if (right - left < 2) {
 			return;
 		}
@@ -39,7 +30,7 @@ public class QuickSort {
 		return left + ((right - left) / 2);
 	}
 
-	public static int[] swapElements(int[] numbers, int a, int b) {
+	public int[] swapElements(int[] numbers, int a, int b) {
 		if (a == b || numbers[a] == numbers[b]) {
 			return numbers;
 		}
@@ -47,10 +38,5 @@ public class QuickSort {
 		numbers[b] = numbers[a] - numbers[b];
 		numbers[a] = numbers[a] - numbers[b];
 		return numbers;
-	}
-
-	public static void main(String args[]) {
-		sort(Utils.getRandom(100000));
-
 	}
 }

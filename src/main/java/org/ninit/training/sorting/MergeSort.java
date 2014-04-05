@@ -1,72 +1,65 @@
 package org.ninit.training.sorting;
 
-import org.ninit.training.utils.Utils;
+import java.util.Arrays;
 
-public class MergeSort {
+public class MergeSort implements Sorteable{
+
 	private int[] numbers;
-	private int[] helper;
 
-	private int number;
-
-	public void sort(int[] values) {
-		this.numbers = values;
-		number = values.length;
-		this.helper = new int[number];
-		mergesort(0, number - 1);
+	public void sort(int[] input) {
+		this.numbers = input;
+		mergeSort(0, input.length);
 	}
 
-	private void mergesort(int low, int high) {
-		// check if low is smaller then high, if not then the array is sorted
-		if (low < high) {
-			// Get the index of the element which is in the middle
-			int middle = low + (high - low) / 2;
-			// Sort the left side of the array
-			mergesort(low, middle);
-			// Sort the right side of the array
-			mergesort(middle + 1, high);
-			// Combine them both
-			merge(low, middle, high);
+	public int size() {
+		return numbers.length;
+	}
+
+	private int middle(int left, int right) {
+		return left + (right - left) / 2;
+	}
+
+	public void mergeSort(int left, int right) {
+		if ((left + 1) == right) {
+			return;
+		}
+		mergeSort(left, middle(left, right));
+		mergeSort(middle(left, right), right);
+		merge(left, right, middle(left, right));
+
+	}
+
+	public void merge(int left, int right, int middle) {
+		int[] merged = merge(Arrays.copyOfRange(numbers, left, middle),
+				Arrays.copyOfRange(numbers, middle, right));
+		for (int i = 0; i < merged.length; i++) {
+			numbers[left + i] = merged[i];
 		}
 	}
 
-	private void merge(int low, int middle, int high) {
+	// Join two sorted arrays
+	private int[] merge(int[] a, int[] b) {
+		int[] answer = new int[a.length + b.length];
 
-		// Copy both parts into the helper array
-		for (int i = low; i <= high; i++) {
-			helper[i] = numbers[i];
-		}
+		int i = 0;
+		int j = 0;
+		int k = 0;
 
-		int i = low;
-		int j = middle + 1;
-		int k = low;
-		// Copy the smallest values from either the left or the right side back
-		// to the original array
-		while (i <= middle && j <= high) {
-			if (helper[i] <= helper[j]) {
-				numbers[k] = helper[i];
-				i++;
+		while (i < a.length && j < b.length) {
+			if (a[i] < b[j]) {
+				answer[k++] = a[i++];
 			} else {
-				numbers[k] = helper[j];
-				j++;
+				answer[k++] = b[j++];
 			}
-			k++;
-		}
-		// Copy the rest of the left side of the array into the target array
-		while (i <= middle) {
-			numbers[k] = helper[i];
-			k++;
-			i++;
 		}
 
-	}
-	
-	public static void main(String args[]){
-		MergeSort ms = new MergeSort();
-		int[] n = Utils.getRandom(8);
-		ms.sort(n);
-		
-		System.out.println(n);
-		
-		
+		while (i < a.length) {
+			answer[k++] = a[i++];
+		}
+		while (j < b.length) {
+			answer[k++] = b[j++];
+		}
+
+		return answer;
 	}
 }
