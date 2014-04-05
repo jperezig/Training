@@ -1,4 +1,4 @@
-package org.ninit.training.sorting.test;
+package org.ninit.training.test;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 import org.ninit.training.sorting.MergeSort;
+import org.ninit.training.test.SortTestUtils;
 import org.ninit.training.utils.Utils;
 
 public class MergeSortTest {
