@@ -1,5 +1,6 @@
 package org.ninit.training.utils;
 
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -31,6 +32,16 @@ public class Utils {
         int[] result = new int[numbers.length];
         for (int i = 0; i < numbers.length; i++) {
             result[i] = Integer.valueOf(numbers[i]);
+        }
+
+        return result;
+    }
+
+    public static int[] toPrimitives(List<Integer> numbers) {
+        int[] result = new int[numbers.size()];
+        int i = 0;
+        for (Integer n : numbers) {
+            result[i++] = n;
         }
 
         return result;
