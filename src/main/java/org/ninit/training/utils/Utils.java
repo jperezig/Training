@@ -27,6 +27,15 @@ public class Utils {
         return numbers;
     }
 
+    public static int[] toInt(String[] numbers) {
+        int[] result = new int[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            result[i] = Integer.valueOf(numbers[i]);
+        }
+
+        return result;
+    }
+
     public static void read() {
         int[] numbers;
         Scanner scanner = new Scanner(System.in);
