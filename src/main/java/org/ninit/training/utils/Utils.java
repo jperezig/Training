@@ -5,24 +5,37 @@ import java.util.Scanner;
 
 public class Utils {
 
-	public static int[] getRandom(int size) {
-		int[] numbers = new int[size];
-		Random random = new Random();
-		for (int i = 0; i < size; i++) {
-			numbers[i] = random.nextInt(100);
-		}
-		return numbers;
-	}
+    public static int[] getRandom(int size) {
+        int[] numbers = new int[size];
+        Random random = new Random();
+        for (int i = 0; i < size; i++) {
+            numbers[i] = random.nextInt(100);
+        }
+        return numbers;
+    }
 
-	public static void read() {
-		int[] numbers;
-		Scanner scanner = new Scanner(System.in);
-		int n = scanner.nextInt();
-		numbers = new int[n];
+    public static int[] getRandomWithNegatives(int size, int range) {
+        int[] numbers = new int[size];
+        Random random = new Random();
+        for (int i = 0; i < size; i++) {
+            if (random.nextBoolean()) {
+                numbers[i] = random.nextInt(range);
+            } else {
+                numbers[i] = -random.nextInt(range);
+            }
+        }
+        return numbers;
+    }
 
-		for (int i = 0; i < n; i++) {
-			numbers[i] = scanner.nextInt();
-		}
-		scanner.close();
-	}
+    public static void read() {
+        int[] numbers;
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        numbers = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+        scanner.close();
+    }
 }
