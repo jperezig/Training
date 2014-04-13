@@ -1,6 +1,7 @@
 package org.ninit.training.hackrank;
 
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -70,7 +71,7 @@ public class Critics {
         return compatibleCritics;
     }
 
-    public static void solve(List<Set<Integer>> critics) {
+    public static void solve(List<Set<Integer>> critics, PrintStream out) {
         critics = getCompatibleVCritics(critics);
         List<Set<Integer>> combinations = new ArrayList<Set<Integer>>();
         getCombinations(critics.size(), new HashSet<Integer>(), combinations, 0);
@@ -89,12 +90,17 @@ public class Critics {
                 }
             }
         }
-        System.out.println(solution.size());
+        out.println(solution.size());
         for (Set<Integer> s : solution) {
+            int n = 0;
             for (Integer i : s) {
-                System.out.print(i + " ");
+                out.print(i);
+                if (n < 1) {
+                    out.print(" ");
+                }
+                n++;
             }
-            System.out.println();
+            out.println();
         }
 
     }
@@ -117,6 +123,6 @@ public class Critics {
     }
 
     public static void main(String[] args) {
-        solve(read(System.in));
+        solve(read(System.in), System.out);
     }
 }
