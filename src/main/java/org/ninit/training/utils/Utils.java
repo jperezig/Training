@@ -1,8 +1,10 @@
 package org.ninit.training.utils;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Utils {
 
@@ -32,6 +34,15 @@ public class Utils {
         int[] result = new int[numbers.length];
         for (int i = 0; i < numbers.length; i++) {
             result[i] = Integer.valueOf(numbers[i]);
+        }
+
+        return result;
+    }
+    
+    public static Set<Integer> toSet(String[] numbers) {
+        Set<Integer> result = new HashSet<Integer>();
+        for (int i = 0; i < numbers.length; i++) {
+            result.add(Integer.valueOf(numbers[i]));
         }
 
         return result;
